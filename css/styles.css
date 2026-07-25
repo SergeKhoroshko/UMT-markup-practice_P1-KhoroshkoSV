@@ -14,6 +14,7 @@
   --color-slider-active: #7af259;
   --color-hero-from: #f1f1f1;
   --color-hero-to: #fcfcfc;
+  --color-card-border: rgba(3, 12, 1, 0.15);
   --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -94,7 +95,11 @@ address {
   display: inline-block;
   padding: 10px 24px;
   border-radius: 100px;
-  background-image: linear-gradient(135deg, var(--color-btn-from), var(--color-btn-to));
+  background-image: linear-gradient(
+    135deg,
+    var(--color-btn-from),
+    var(--color-btn-to)
+  );
   font-weight: 500;
   line-height: 1.5;
   text-align: center;
@@ -180,6 +185,8 @@ address {
   left: 0;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
   background-color: var(--color-white);
   opacity: 0;
   visibility: hidden;
@@ -199,7 +206,7 @@ address {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 14px;
+  padding-top: 8px;
   padding-bottom: 8px;
 }
 
@@ -231,7 +238,7 @@ address {
 
 .mobile-menu-btn {
   display: block;
-  margin-top: 48px;
+  margin-top: 24px;
 }
 
 /* Hero */
@@ -240,9 +247,15 @@ address {
   background-image:
     url("../images/hero-bg-mobile.jpg"),
     linear-gradient(180deg, var(--color-hero-from), var(--color-hero-to));
+  background-image:
+    image-set(
+      url("../images/hero-bg-mobile.jpg") 1x,
+      url("../images/hero-bg-mobile@2x.jpg") 2x
+    ),
+    linear-gradient(180deg, var(--color-hero-from), var(--color-hero-to));
   background-repeat: no-repeat;
-  background-position: right top;
-  background-size: cover;
+  background-position: right center;
+  background-size: auto 100%;
 }
 
 .hero-content {
@@ -292,6 +305,9 @@ address {
 }
 
 .about-image {
+  width: 100%;
+  aspect-ratio: 335 / 428;
+  object-fit: cover;
   margin-top: 40px;
   border-radius: 16px;
 }
@@ -320,6 +336,9 @@ address {
 }
 
 .bestsellers-card-image {
+  width: 100%;
+  aspect-ratio: 335 / 320;
+  object-fit: cover;
   border-radius: 16px;
 }
 
@@ -393,6 +412,8 @@ address {
 
 .bouquets-card-image {
   width: 100%;
+  aspect-ratio: 335 / 296;
+  object-fit: cover;
   border-radius: 16px;
 }
 
@@ -436,7 +457,7 @@ address {
   flex-shrink: 0;
   width: 100%;
   padding: 32px;
-  border: 1px solid rgba(3, 12, 1, 0.15);
+  border: 1px solid var(--color-card-border);
   border-radius: 16px;
 }
 
@@ -515,6 +536,8 @@ address {
 
 .contacts-image {
   width: 100%;
+  aspect-ratio: 335 / 312;
+  object-fit: cover;
   margin-top: 48px;
   border-radius: 16px;
 }
@@ -534,7 +557,7 @@ address {
 }
 
 .footer-logo img {
-  width: 200px;
+  width: 294px;
   height: auto;
 }
 
@@ -604,9 +627,16 @@ address {
 
   .hero {
     background-image:
-      url("../images/hero-bg.jpg"),
+      url("../images/hero-bg-tablet.jpg"),
+      linear-gradient(180deg, var(--color-hero-from), var(--color-hero-to));
+    background-image:
+      image-set(
+        url("../images/hero-bg-tablet.jpg") 1x,
+        url("../images/hero-bg-tablet@2x.jpg") 2x
+      ),
       linear-gradient(180deg, var(--color-hero-from), var(--color-hero-to));
     background-position: right center;
+    background-size: cover;
   }
 
   .hero-btn {
@@ -615,8 +645,24 @@ address {
 
   .hero-content {
     max-width: 400px;
-    padding-top: 80px;
+    padding-top: 152px;
     padding-bottom: 96px;
+  }
+
+  .about-image {
+    aspect-ratio: 340 / 428;
+  }
+
+  .bestsellers-card-image {
+    aspect-ratio: 340 / 320;
+  }
+
+  .bouquets-card-image {
+    aspect-ratio: 340 / 296;
+  }
+
+  .contacts-image {
+    aspect-ratio: 16 / 9;
   }
 
   .about-container {
@@ -722,17 +768,45 @@ address {
     display: none;
   }
 
+  .mobile-menu {
+    display: none;
+  }
+
+  .about-image {
+    width: 600px;
+    aspect-ratio: 600 / 428;
+  }
+
+  .bestsellers-card-image {
+    aspect-ratio: 405 / 320;
+  }
+
+  .bouquets-card-image {
+    aspect-ratio: 1 / 1;
+  }
+
+  .contacts-image {
+    aspect-ratio: 16 / 9;
+  }
+
   .hero {
     background-image:
       url("../images/hero-bg.jpg"),
       linear-gradient(180deg, var(--color-hero-from), var(--color-hero-to));
+    background-image:
+      image-set(
+        url("../images/hero-bg.jpg") 1x,
+        url("../images/hero-bg@2x.jpg") 2x
+      ),
+      linear-gradient(180deg, var(--color-hero-from), var(--color-hero-to));
     background-position: right center;
+    background-size: cover;
   }
 
   .hero-content {
     max-width: 667px;
     padding-top: 190px;
-    padding-bottom: 119px;
+    padding-bottom: 190px;
   }
 
   .hero-title {
@@ -740,7 +814,7 @@ address {
   }
 
   .hero-btn {
-    margin-top: 56px;
+    margin-top: 32px;
   }
 
   .about {
@@ -763,10 +837,6 @@ address {
 
   .about-text {
     margin-top: 40px;
-  }
-
-  .about-image {
-    width: 600px;
   }
 
   .bestsellers {
@@ -848,10 +918,6 @@ address {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .footer-logo img {
-    width: 294px;
   }
 
   .footer-nav-list {

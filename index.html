@@ -23,6 +23,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
     />
+    <noscript>
+      <style>
+        [data-aos^="fade"] {
+          opacity: 1;
+          transform: none;
+        }
+      </style>
+    </noscript>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
@@ -33,17 +41,30 @@
         </a>
         <nav class="nav">
           <ul class="nav-list">
-            <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About Us</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="#bestsellers">Bestsellers</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#bouquets">Bouquets</a></li>
-            <li class="nav-item"><a class="nav-link" href="#feedback">Feedback</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contacts">Contacts</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#bouquets">Bouquets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#feedback">Feedback</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contacts">Contacts</a>
+            </li>
           </ul>
         </nav>
         <a class="btn header-btn" href="#bouquets">Explore Bouquets</a>
-        <button class="menu-open-btn" type="button" aria-label="Open mobile menu">
+        <button
+          class="menu-open-btn"
+          type="button"
+          aria-expanded="false"
+          aria-label="Open mobile menu"
+        >
           <svg class="menu-open-icon" width="24" height="24">
             <use href="images/icons.svg#icon-menu"></use>
           </svg>
@@ -52,9 +73,18 @@
       <div class="mobile-menu">
         <div class="container mobile-menu-header">
           <a class="logo" href="./">
-            <img src="images/logo.svg" width="84" height="36" alt="Flora logo" />
+            <img
+              src="images/logo.svg"
+              width="84"
+              height="36"
+              alt="Flora logo"
+            />
           </a>
-          <button class="menu-close-btn" type="button" aria-label="Close mobile menu">
+          <button
+            class="menu-close-btn"
+            type="button"
+            aria-label="Close mobile menu"
+          >
             <svg class="menu-close-icon" width="24" height="24">
               <use href="images/icons.svg#icon-close"></use>
             </svg>
@@ -86,20 +116,26 @@
       <section class="hero">
         <div class="container">
           <div class="hero-content" data-aos="fade-up">
-            <h1 class="hero-title">Brighten Your Day with Our Stunning Bouquets</h1>
+            <h1 class="hero-title">
+              Brighten Your Day with Our Stunning Bouquets
+            </h1>
             <p class="hero-text">
-              At Flora, we believe that every occasion deserves a beautiful bouquet. Our
-              expertly crafted arrangements are designed to bring joy and elegance to
-              your celebrations.
+              At Flora, we believe that every occasion deserves a beautiful
+              bouquet. Our expertly crafted arrangements are designed to bring
+              joy and elegance to your celebrations.
             </p>
-            <a class="btn hero-btn" href="#bestsellers">Explore Our Bestsellers</a>
+            <a class="btn hero-btn" href="#bestsellers"
+              >Explore Our Bestsellers</a
+            >
           </div>
         </div>
       </section>
       <section class="about" id="about">
         <div class="container about-container">
           <div class="about-content" data-aos="fade-up">
-            <h2 class="about-title section-title">Our Passion for Floral Artistry</h2>
+            <h2 class="about-title section-title">
+              Our Passion for Floral Artistry
+            </h2>
             <p class="about-text">
               At Flora, we believe that every bouquet tells a story. Our team
               meticulously crafts each arrangement, blending creativity with the
@@ -109,6 +145,7 @@
           <img
             class="about-image"
             src="images/about-florist.jpg"
+            srcset="images/about-florist.jpg 1x, images/about-florist@2x.jpg 2x"
             width="600"
             height="428"
             alt="Florist in a green apron arranging white peonies in the workshop"
@@ -127,6 +164,10 @@
               <img
                 class="bestsellers-card-image"
                 src="images/bouquet-spring-elegance.jpg"
+                srcset="
+                  images/bouquet-spring-elegance.jpg    1x,
+                  images/bouquet-spring-elegance@2x.jpg 2x
+                "
                 width="405"
                 height="320"
                 alt="Spring Elegance bouquet of pink roses and peonies with a ribbon"
@@ -139,6 +180,10 @@
               <img
                 class="bestsellers-card-image"
                 src="images/bouquet-berry-chic.jpg"
+                srcset="
+                  images/bouquet-berry-chic.jpg    1x,
+                  images/bouquet-berry-chic@2x.jpg 2x
+                "
                 width="405"
                 height="320"
                 alt="Berry Chic bouquet with deep berry tones and purple accents"
@@ -151,6 +196,10 @@
               <img
                 class="bestsellers-card-image"
                 src="images/bouquet-lavender-dream.jpg"
+                srcset="
+                  images/bouquet-lavender-dream.jpg    1x,
+                  images/bouquet-lavender-dream@2x.jpg 2x
+                "
                 width="405"
                 height="320"
                 alt="Lavender Dream bouquet with lavender and lisianthus in a glass vase"
@@ -163,6 +212,10 @@
               <img
                 class="bestsellers-card-image"
                 src="images/bouquet-lilac-fantasy.jpg"
+                srcset="
+                  images/bouquet-lilac-fantasy.jpg    1x,
+                  images/bouquet-lilac-fantasy@2x.jpg 2x
+                "
                 width="405"
                 height="320"
                 alt="Bouquet with lavender, lisianthus, and roses in deep hues"
@@ -170,8 +223,8 @@
               />
               <h3 class="bestsellers-card-name">Lilac Fantasy</h3>
               <p class="bestsellers-card-text">
-                Bouquet with lavender, lisianthus, and roses — ideal for those who love
-                deep hues and gentle fragrance.
+                Bouquet with lavender, lisianthus, and roses — ideal for those
+                who love deep hues and gentle fragrance.
               </p>
               <p class="bestsellers-card-price">$55</p>
             </li>
@@ -185,7 +238,11 @@
             <li class="slider-dot"></li>
           </ul>
           <div class="slider-buttons">
-            <button class="slider-btn" type="button" aria-label="Previous bouquet">
+            <button
+              class="slider-btn"
+              type="button"
+              aria-label="Previous bouquet"
+            >
               <svg class="slider-btn-icon" width="24" height="24">
                 <use href="images/icons.svg#icon-arrow-left"></use>
               </svg>
@@ -211,6 +268,10 @@
               <img
                 class="bouquets-card-image"
                 src="images/bouquet-peach-meadow.jpg"
+                srcset="
+                  images/bouquet-peach-meadow.jpg    1x,
+                  images/bouquet-peach-meadow@2x.jpg 2x
+                "
                 width="296"
                 height="296"
                 alt="Peach Meadow bouquet of peach and pink flowers in a rustic basket"
@@ -223,6 +284,10 @@
               <img
                 class="bouquets-card-image"
                 src="images/bouquet-blush-romance.jpg"
+                srcset="
+                  images/bouquet-blush-romance.jpg    1x,
+                  images/bouquet-blush-romance@2x.jpg 2x
+                "
                 width="296"
                 height="296"
                 alt="Blush Romance bouquet being arranged by a florist"
@@ -235,6 +300,10 @@
               <img
                 class="bouquets-card-image"
                 src="images/bouquet-pastel-garden.jpg"
+                srcset="
+                  images/bouquet-pastel-garden.jpg    1x,
+                  images/bouquet-pastel-garden@2x.jpg 2x
+                "
                 width="296"
                 height="296"
                 alt="Pastel Garden composition with succulents and soft purple flowers"
@@ -247,6 +316,10 @@
               <img
                 class="bouquets-card-image"
                 src="images/bouquet-tulip-charm.jpg"
+                srcset="
+                  images/bouquet-tulip-charm.jpg    1x,
+                  images/bouquet-tulip-charm@2x.jpg 2x
+                "
                 width="296"
                 height="296"
                 alt="Tulip Charm bouquet of bright flowers in a purple wooden crate"
@@ -259,6 +332,10 @@
               <img
                 class="bouquets-card-image"
                 src="images/bouquet-berry-bloom.jpg"
+                srcset="
+                  images/bouquet-berry-bloom.jpg    1x,
+                  images/bouquet-berry-bloom@2x.jpg 2x
+                "
                 width="296"
                 height="296"
                 alt="Berry Bloom arrangement of pink and magenta flowers in a basket"
@@ -271,6 +348,10 @@
               <img
                 class="bouquets-card-image"
                 src="images/bouquet-sweet-whisper.jpg"
+                srcset="
+                  images/bouquet-sweet-whisper.jpg    1x,
+                  images/bouquet-sweet-whisper@2x.jpg 2x
+                "
                 width="296"
                 height="296"
                 alt="Sweet Whisper bouquet of roses and peonies in a wicker basket"
@@ -283,6 +364,10 @@
               <img
                 class="bouquets-card-image"
                 src="images/bouquet-field-joy.jpg"
+                srcset="
+                  images/bouquet-field-joy.jpg    1x,
+                  images/bouquet-field-joy@2x.jpg 2x
+                "
                 width="296"
                 height="296"
                 alt="Field Joy bouquet of wildflowers with a sunflower on a white table"
@@ -295,6 +380,10 @@
               <img
                 class="bouquets-card-image"
                 src="images/bouquet-soft-bloom.jpg"
+                srcset="
+                  images/bouquet-soft-bloom.jpg    1x,
+                  images/bouquet-soft-bloom@2x.jpg 2x
+                "
                 width="296"
                 height="296"
                 alt="Soft Bloom bouquet wrapped in craft paper in vintage style"
@@ -322,8 +411,8 @@
             </li>
             <li class="feedback-card">
               <blockquote class="feedback-quote">
-                Absolutely stunning bouquet! It looked even better than the photo and
-                arrived right on time.
+                Absolutely stunning bouquet! It looked even better than the
+                photo and arrived right on time.
               </blockquote>
               <p class="feedback-author">Daniel R.</p>
             </li>
@@ -335,28 +424,32 @@
             </li>
             <li class="feedback-card">
               <blockquote class="feedback-quote">
-                Ordered a last-minute gift and was amazed by how fast and professional
-                the delivery was. Highly recommend!
+                Ordered a last-minute gift and was amazed by how fast and
+                professional the delivery was. Highly recommend!
               </blockquote>
               <p class="feedback-author">Julia K.</p>
             </li>
             <li class="feedback-card">
               <blockquote class="feedback-quote">
-                Every flower was perfect. You can feel the care and love in every
-                bouquet.
+                Every flower was perfect. You can feel the care and love in
+                every bouquet.
               </blockquote>
               <p class="feedback-author">Mark S.</p>
             </li>
             <li class="feedback-card">
               <blockquote class="feedback-quote">
-                Flora helped make my friend's birthday extra special. She was blown away
-                by the flowers!
+                Flora helped make my friend's birthday extra special. She was
+                blown away by the flowers!
               </blockquote>
               <p class="feedback-author">Natalie V.</p>
             </li>
           </ul>
           <div class="slider-buttons feedback-buttons">
-            <button class="slider-btn" type="button" aria-label="Previous review">
+            <button
+              class="slider-btn"
+              type="button"
+              aria-label="Previous review"
+            >
               <svg class="slider-btn-icon" width="24" height="24">
                 <use href="images/icons.svg#icon-arrow-left"></use>
               </svg>
@@ -376,10 +469,11 @@
               <p class="contacts-tagline">Connect</p>
               <h2 class="contacts-title section-title">Get in Touch</h2>
               <p class="contacts-text">
-                We're here to assist you with all your floral needs and inquiries.
+                We're here to assist you with all your floral needs and
+                inquiries.
               </p>
             </div>
-            <address class="contacts-info">
+            <div class="contacts-info">
               <ul class="contacts-list">
                 <li class="contacts-item">
                   <svg class="contacts-icon" width="24" height="24">
@@ -398,15 +492,18 @@
                   </svg>
                   <div class="contacts-item-content">
                     <h3 class="contacts-item-title">Store</h3>
-                    <p class="contacts-address">456 Floral Ave, Sydney NSW 2000 AU</p>
+                    <p class="contacts-address">
+                      456 Floral Ave, Sydney NSW 2000 AU
+                    </p>
                   </div>
                 </li>
               </ul>
-            </address>
+            </div>
           </div>
           <img
             class="contacts-image"
             src="images/contact-store.jpg"
+            srcset="images/contact-store.jpg 1x, images/contact-store@2x.jpg 2x"
             width="1280"
             height="720"
             alt="Flora flower store interior with a florist wrapping a bouquet"
@@ -488,7 +585,9 @@
           </ul>
         </div>
         <div class="footer-credits">
-          <p class="footer-copyright">&copy; 2025 Flora. All rights reserved.</p>
+          <p class="footer-copyright">
+            &copy; 2025 Flora. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
