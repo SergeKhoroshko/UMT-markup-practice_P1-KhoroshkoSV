@@ -620,6 +620,14 @@ address {
     padding-right: 32px;
   }
 
+  .mobile-menu-content {
+    text-align: center;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+  }
+
   .header-btn {
     display: inline-block;
     margin-left: auto;

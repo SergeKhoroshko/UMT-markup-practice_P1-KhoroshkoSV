@@ -3,7 +3,7 @@
 Лендінг квіткового магазину **Flora** — навчальний проєкт дисципліни
 «Практикум сучасних методологій розробки ПЗ».
 
-Сайт створено за [макетом Figma](https://www.figma.com/design/2Tj16H7IO7dq1ViTvIh57V/Flora?node-id=8203-59903)
+Сайт створено за [макетом Figma](https://www.figma.com/design/lFpZZ7k7sN1KN6aVucGuOc/Flora--KhoroshkoSV-)
 з адаптивною версткою за принципом mobile-first.
 
 ## Про проєкт
