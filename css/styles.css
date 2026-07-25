@@ -75,7 +75,6 @@ address {
 }
 
 .container {
-  max-width: 375px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 20px;
@@ -380,7 +379,7 @@ address {
 }
 
 .bestsellers .slider-buttons {
-  margin-top: 24px;
+  display: none;
 }
 
 /* Bouquets */
@@ -473,6 +472,7 @@ address {
 }
 
 .feedback-buttons {
+  justify-content: flex-end;
   margin-top: 32px;
 }
 
@@ -616,7 +616,6 @@ address {
 
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 768px;
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -853,6 +852,11 @@ address {
   .bestsellers-list {
     gap: 32px;
     margin-top: 32px;
+  }
+
+  .bestsellers .slider-buttons {
+    display: flex;
+    margin-top: 24px;
   }
 
   .bestsellers-card {
