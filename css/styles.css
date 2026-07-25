@@ -327,6 +327,7 @@ address {
 .bestsellers-list {
   display: flex;
   gap: 24px;
+  overflow: hidden;
   margin-top: 40px;
 }
 
@@ -450,6 +451,7 @@ address {
 .feedback-list {
   display: flex;
   gap: 24px;
+  overflow: hidden;
   margin-top: 40px;
 }
 
