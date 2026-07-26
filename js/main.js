@@ -86,8 +86,32 @@ const state = {
 
 const isValidBouquet = (item) => Boolean(item && item.title && item.img);
 
+// Fallback for the live page: if the remote mock API is unavailable,
+// read the static db.json from the repository and paginate on the client.
+let staticBouquets = null;
+
 async function fetchBouquets(params) {
-  return axios.get(`${BASE_URL}/bouquets`, { params });
+  try {
+    return await axios.get(`${BASE_URL}/bouquets`, { params });
+  } catch (error) {
+    if (BASE_URL.includes("localhost")) {
+      throw error;
+    }
+    if (!staticBouquets) {
+      const { data } = await axios.get("db.json");
+      staticBouquets = data.bouquets;
+    }
+    let items = staticBouquets;
+    if (params.category) {
+      items = items.filter((item) => item.category === params.category);
+    }
+    const limit = params._limit || items.length;
+    const start = ((params._page || 1) - 1) * limit;
+    return {
+      data: items.slice(start, start + limit),
+      headers: { "x-total-count": String(items.length) },
+    };
+  }
 }
 
 // ===== Rendering =====
