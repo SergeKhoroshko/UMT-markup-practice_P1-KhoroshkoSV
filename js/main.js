@@ -49,6 +49,7 @@ const modals = (() => {
     if (!document.querySelector(".backdrop.is-open")) {
       document.body.classList.remove("no-scroll");
     }
+    backdrop.dispatchEvent(new CustomEvent("modal:closed"));
   };
 
   backdrops.forEach((backdrop) => {
@@ -338,15 +339,22 @@ const renderList = (list, items, markupFn) => {
   const text = document.querySelector(".product-modal-text");
   const form = document.querySelector(".product-modal-form");
 
-  const openProduct = (id) => {
+  const orderBackdrop = document.querySelector('.backdrop[data-modal="order"]');
+  let currentId = null;
+  let returnId = null;
+
+  const openProduct = (id, preserveQty = false) => {
     const item = state.items.get(id);
     if (!item) return;
+    currentId = id;
     image.src = item.img;
     image.alt = `${item.title} bouquet`;
     title.textContent = item.title;
     price.textContent = `$${item.price}`;
     text.textContent = item.desc || "";
-    form.reset();
+    if (!preserveQty) {
+      form.reset();
+    }
     modals.open("product");
   };
 
@@ -359,8 +367,21 @@ const renderList = (list, items, markupFn) => {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    returnId = currentId;
     modals.close(document.querySelector('.backdrop[data-modal="product"]'));
     modals.open("order");
+  });
+
+  // Dismissing the order modal steps back to the product modal
+  // (the completed order cancels the return, see "order:submitted").
+  orderBackdrop.addEventListener("order:submitted", () => {
+    returnId = null;
+  });
+  orderBackdrop.addEventListener("modal:closed", () => {
+    if (returnId !== null) {
+      openProduct(returnId, true);
+      returnId = null;
+    }
   });
 })();
 
@@ -371,7 +392,9 @@ const renderList = (list, items, markupFn) => {
   orderForm.addEventListener("submit", (event) => {
     event.preventDefault();
     orderForm.reset();
-    modals.close(document.querySelector('.backdrop[data-modal="order"]'));
+    const backdrop = document.querySelector('.backdrop[data-modal="order"]');
+    backdrop.dispatchEvent(new CustomEvent("order:submitted"));
+    modals.close(backdrop);
   });
 
   const subscribeForm = document.querySelector(".footer-subscribe");
