@@ -124,7 +124,6 @@ const bouquetCardMarkup = (item) => `
       width="296"
       height="296"
       alt="${item.title} bouquet"
-      loading="lazy"
     />
     <h3 class="bouquets-card-name">${item.title}</h3>
     <p class="bouquets-card-price">$${item.price}</p>
@@ -138,7 +137,6 @@ const bestsellerCardMarkup = (item) => `
       width="405"
       height="320"
       alt="${item.title} bouquet"
-      loading="lazy"
     />
     <h3 class="bestsellers-card-name">${item.title}</h3>
     <p class="bestsellers-card-price">$${item.price}</p>
