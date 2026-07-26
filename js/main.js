@@ -389,8 +389,80 @@ const renderList = (list, items, markupFn) => {
 
 (() => {
   const orderForm = document.querySelector(".order-form");
+
+  const orderRules = [
+    {
+      name: "user-name",
+      message: "Please enter your name",
+      isValid: (value) => value.trim().length > 0,
+    },
+    {
+      name: "user-phone",
+      message: "Please enter a valid phone number",
+      isValid: (value) => {
+        const digits = value.replace(/\D/g, "");
+        return (
+          /^[+\d\s()-]+$/.test(value.trim()) &&
+          digits.length >= 7 &&
+          digits.length <= 15
+        );
+      },
+    },
+    {
+      name: "user-address",
+      message: "Please enter your address",
+      isValid: (value) => value.trim().length > 0,
+    },
+  ];
+
+  const setFieldError = (input, message) => {
+    const field = input.closest(".form-field");
+    input.classList.toggle("is-error", Boolean(message));
+    let errorText = field.querySelector(".form-error");
+    if (message) {
+      if (!errorText) {
+        field.insertAdjacentHTML("beforeend", '<p class="form-error"></p>');
+        errorText = field.querySelector(".form-error");
+      }
+      errorText.textContent = message;
+    } else if (errorText) {
+      errorText.remove();
+    }
+  };
+
+  const validateOrderForm = () => {
+    let firstInvalid = null;
+    orderRules.forEach((rule) => {
+      const input = orderForm.elements[rule.name];
+      const message = rule.isValid(input.value) ? "" : rule.message;
+      setFieldError(input, message);
+      if (message && !firstInvalid) firstInvalid = input;
+    });
+    const agreement = orderForm.elements["license-agreement"];
+    agreement
+      .closest(".form-agreement")
+      .classList.toggle("is-error", !agreement.checked);
+    if (!agreement.checked && !firstInvalid) firstInvalid = agreement;
+    return firstInvalid;
+  };
+
+  orderForm.addEventListener("input", (event) => {
+    const rule = orderRules.find((r) => r.name === event.target.name);
+    if (rule && rule.isValid(event.target.value)) {
+      setFieldError(event.target, "");
+    }
+    if (event.target.name === "license-agreement" && event.target.checked) {
+      event.target.closest(".form-agreement").classList.remove("is-error");
+    }
+  });
+
   orderForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    const firstInvalid = validateOrderForm();
+    if (firstInvalid) {
+      firstInvalid.focus();
+      return;
+    }
     orderForm.reset();
     const backdrop = document.querySelector('.backdrop[data-modal="order"]');
     backdrop.dispatchEvent(new CustomEvent("order:submitted"));
