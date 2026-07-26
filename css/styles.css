@@ -136,12 +136,17 @@ address {
   transition: background-color var(--transition);
 }
 
-.slider-btn:hover,
-.slider-btn:focus {
+.slider-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.slider-btn:hover:enabled,
+.slider-btn:focus:enabled {
   background-color: var(--color-slider-hover);
 }
 
-.slider-btn:active {
+.slider-btn:active:enabled {
   background-color: var(--color-slider-active);
 }
 

@@ -229,6 +229,8 @@ const renderList = (list, items, markupFn) => {
     const gap = parseFloat(getComputedStyle(list).columnGap) || 0;
     const step = card.getBoundingClientRect().width + gap;
     list.style.transform = `translateX(-${position * step}px)`;
+    prevBtn.disabled = position === 0;
+    nextBtn.disabled = position === maxPosition();
     dotsList.querySelectorAll(".slider-dot").forEach((dot, index) => {
       dot.classList.toggle("is-active", index === position);
     });
@@ -307,7 +309,11 @@ const renderList = (list, items, markupFn) => {
     const gap = parseFloat(getComputedStyle(list).columnGap) || 0;
     const step = card.getBoundingClientRect().width + gap;
     list.style.transform = `translateX(-${position * step}px)`;
+    prevBtn.disabled = position === 0;
+    nextBtn.disabled = position === maxPosition();
   };
+
+  update();
 
   prevBtn.addEventListener("click", () => {
     position = Math.max(0, position - 1);
