@@ -988,7 +988,8 @@ address {
   }
 }
 
-.form-input.is-error {
+.form-input.is-error,
+.form-input.is-error:focus {
   border-color: #af0000;
 }
 
