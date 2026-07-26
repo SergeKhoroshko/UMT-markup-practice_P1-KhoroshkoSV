@@ -159,84 +159,14 @@
           <h2 class="bestsellers-title section-title" data-aos="fade-up">
             Top-Selling Bouquets
           </h2>
-          <ul class="bestsellers-list" data-aos="fade-up">
-            <li class="bestsellers-card">
-              <img
-                class="bestsellers-card-image"
-                src="images/bouquet-spring-elegance.jpg"
-                srcset="
-                  images/bouquet-spring-elegance.jpg    1x,
-                  images/bouquet-spring-elegance@2x.jpg 2x
-                "
-                width="405"
-                height="320"
-                alt="Spring Elegance bouquet of pink roses and peonies with a ribbon"
-                loading="lazy"
-              />
-              <h3 class="bestsellers-card-name">Spring Elegance</h3>
-              <p class="bestsellers-card-price">$35</p>
-            </li>
-            <li class="bestsellers-card">
-              <img
-                class="bestsellers-card-image"
-                src="images/bouquet-berry-chic.jpg"
-                srcset="
-                  images/bouquet-berry-chic.jpg    1x,
-                  images/bouquet-berry-chic@2x.jpg 2x
-                "
-                width="405"
-                height="320"
-                alt="Berry Chic bouquet with deep berry tones and purple accents"
-                loading="lazy"
-              />
-              <h3 class="bestsellers-card-name">Berry Chic</h3>
-              <p class="bestsellers-card-price">$40</p>
-            </li>
-            <li class="bestsellers-card">
-              <img
-                class="bestsellers-card-image"
-                src="images/bouquet-lavender-dream.jpg"
-                srcset="
-                  images/bouquet-lavender-dream.jpg    1x,
-                  images/bouquet-lavender-dream@2x.jpg 2x
-                "
-                width="405"
-                height="320"
-                alt="Lavender Dream bouquet with lavender and lisianthus in a glass vase"
-                loading="lazy"
-              />
-              <h3 class="bestsellers-card-name">Lavender Dream</h3>
-              <p class="bestsellers-card-price">$55</p>
-            </li>
-            <li class="bestsellers-card">
-              <img
-                class="bestsellers-card-image"
-                src="images/bouquet-lilac-fantasy.jpg"
-                srcset="
-                  images/bouquet-lilac-fantasy.jpg    1x,
-                  images/bouquet-lilac-fantasy@2x.jpg 2x
-                "
-                width="405"
-                height="320"
-                alt="Bouquet with lavender, lisianthus, and roses in deep hues"
-                loading="lazy"
-              />
-              <h3 class="bestsellers-card-name">Lilac Fantasy</h3>
-              <p class="bestsellers-card-text">
-                Bouquet with lavender, lisianthus, and roses — ideal for those
-                who love deep hues and gentle fragrance.
-              </p>
-              <p class="bestsellers-card-price">$55</p>
-            </li>
-          </ul>
-          <ul class="slider-dots">
-            <li class="slider-dot is-active"></li>
-            <li class="slider-dot"></li>
-            <li class="slider-dot"></li>
-            <li class="slider-dot"></li>
-            <li class="slider-dot"></li>
-            <li class="slider-dot"></li>
-          </ul>
+          <div class="loader bestsellers-loader"></div>
+          <p class="api-error bestsellers-error is-hidden">
+            Failed to load bouquets. Please try again later.
+          </p>
+          <div class="slider-viewport">
+            <ul class="bestsellers-list"></ul>
+          </div>
+          <ul class="slider-dots"></ul>
           <div class="slider-buttons">
             <button
               class="slider-btn"
@@ -263,137 +193,17 @@
               Explore our stunning selection of fresh flower bouquets.
             </p>
           </div>
-          <ul class="bouquets-list">
-            <li class="bouquets-card" data-aos="fade-up">
-              <img
-                class="bouquets-card-image"
-                src="images/bouquet-peach-meadow.jpg"
-                srcset="
-                  images/bouquet-peach-meadow.jpg    1x,
-                  images/bouquet-peach-meadow@2x.jpg 2x
-                "
-                width="296"
-                height="296"
-                alt="Peach Meadow bouquet of peach and pink flowers in a rustic basket"
-                loading="lazy"
-              />
-              <h3 class="bouquets-card-name">Peach Meadow</h3>
-              <p class="bouquets-card-price">$55</p>
-            </li>
-            <li class="bouquets-card" data-aos="fade-up">
-              <img
-                class="bouquets-card-image"
-                src="images/bouquet-blush-romance.jpg"
-                srcset="
-                  images/bouquet-blush-romance.jpg    1x,
-                  images/bouquet-blush-romance@2x.jpg 2x
-                "
-                width="296"
-                height="296"
-                alt="Blush Romance bouquet being arranged by a florist"
-                loading="lazy"
-              />
-              <h3 class="bouquets-card-name">Blush Romance</h3>
-              <p class="bouquets-card-price">$34</p>
-            </li>
-            <li class="bouquets-card" data-aos="fade-up">
-              <img
-                class="bouquets-card-image"
-                src="images/bouquet-pastel-garden.jpg"
-                srcset="
-                  images/bouquet-pastel-garden.jpg    1x,
-                  images/bouquet-pastel-garden@2x.jpg 2x
-                "
-                width="296"
-                height="296"
-                alt="Pastel Garden composition with succulents and soft purple flowers"
-                loading="lazy"
-              />
-              <h3 class="bouquets-card-name">Pastel Garden</h3>
-              <p class="bouquets-card-price">$40</p>
-            </li>
-            <li class="bouquets-card" data-aos="fade-up">
-              <img
-                class="bouquets-card-image"
-                src="images/bouquet-tulip-charm.jpg"
-                srcset="
-                  images/bouquet-tulip-charm.jpg    1x,
-                  images/bouquet-tulip-charm@2x.jpg 2x
-                "
-                width="296"
-                height="296"
-                alt="Tulip Charm bouquet of bright flowers in a purple wooden crate"
-                loading="lazy"
-              />
-              <h3 class="bouquets-card-name">Tulip Charm</h3>
-              <p class="bouquets-card-price">$61</p>
-            </li>
-            <li class="bouquets-card" data-aos="fade-up">
-              <img
-                class="bouquets-card-image"
-                src="images/bouquet-berry-bloom.jpg"
-                srcset="
-                  images/bouquet-berry-bloom.jpg    1x,
-                  images/bouquet-berry-bloom@2x.jpg 2x
-                "
-                width="296"
-                height="296"
-                alt="Berry Bloom arrangement of pink and magenta flowers in a basket"
-                loading="lazy"
-              />
-              <h3 class="bouquets-card-name">Berry Bloom</h3>
-              <p class="bouquets-card-price">$32</p>
-            </li>
-            <li class="bouquets-card" data-aos="fade-up">
-              <img
-                class="bouquets-card-image"
-                src="images/bouquet-sweet-whisper.jpg"
-                srcset="
-                  images/bouquet-sweet-whisper.jpg    1x,
-                  images/bouquet-sweet-whisper@2x.jpg 2x
-                "
-                width="296"
-                height="296"
-                alt="Sweet Whisper bouquet of roses and peonies in a wicker basket"
-                loading="lazy"
-              />
-              <h3 class="bouquets-card-name">Sweet Whisper</h3>
-              <p class="bouquets-card-price">$40</p>
-            </li>
-            <li class="bouquets-card" data-aos="fade-up">
-              <img
-                class="bouquets-card-image"
-                src="images/bouquet-field-joy.jpg"
-                srcset="
-                  images/bouquet-field-joy.jpg    1x,
-                  images/bouquet-field-joy@2x.jpg 2x
-                "
-                width="296"
-                height="296"
-                alt="Field Joy bouquet of wildflowers with a sunflower on a white table"
-                loading="lazy"
-              />
-              <h3 class="bouquets-card-name">Field Joy</h3>
-              <p class="bouquets-card-price">$49</p>
-            </li>
-            <li class="bouquets-card" data-aos="fade-up">
-              <img
-                class="bouquets-card-image"
-                src="images/bouquet-soft-bloom.jpg"
-                srcset="
-                  images/bouquet-soft-bloom.jpg    1x,
-                  images/bouquet-soft-bloom@2x.jpg 2x
-                "
-                width="296"
-                height="296"
-                alt="Soft Bloom bouquet wrapped in craft paper in vintage style"
-                loading="lazy"
-              />
-              <h3 class="bouquets-card-name">Soft Bloom</h3>
-              <p class="bouquets-card-price">$37</p>
-            </li>
-          </ul>
-          <button class="btn bouquets-btn" type="button">Show More</button>
+          <ul class="bouquets-list"></ul>
+          <div class="loader bouquets-loader"></div>
+          <p class="api-error bouquets-error is-hidden">
+            Failed to load bouquets. Please try again later.
+          </p>
+          <button class="btn bouquets-btn is-hidden" type="button">
+            Show More
+          </button>
+          <p class="bouquets-end-message is-hidden">
+            We're sorry, but you've reached the end of search results.
+          </p>
         </div>
       </section>
       <section class="feedback" id="feedback">
@@ -401,49 +211,51 @@
           <h2 class="feedback-title section-title" data-aos="fade-up">
             What our clients says
           </h2>
-          <ul class="feedback-list" data-aos="fade-up">
-            <li class="feedback-card">
-              <blockquote class="feedback-quote">
-                "Flora made my anniversary unforgettable with their beautiful
-                arrangement!"
-              </blockquote>
-              <p class="feedback-author">Emma T.</p>
-            </li>
-            <li class="feedback-card">
-              <blockquote class="feedback-quote">
-                Absolutely stunning bouquet! It looked even better than the
-                photo and arrived right on time.
-              </blockquote>
-              <p class="feedback-author">Daniel R.</p>
-            </li>
-            <li class="feedback-card">
-              <blockquote class="feedback-quote">
-                The service was exceptional, and the flowers were fresh!
-              </blockquote>
-              <p class="feedback-author">Olivia M.</p>
-            </li>
-            <li class="feedback-card">
-              <blockquote class="feedback-quote">
-                Ordered a last-minute gift and was amazed by how fast and
-                professional the delivery was. Highly recommend!
-              </blockquote>
-              <p class="feedback-author">Julia K.</p>
-            </li>
-            <li class="feedback-card">
-              <blockquote class="feedback-quote">
-                Every flower was perfect. You can feel the care and love in
-                every bouquet.
-              </blockquote>
-              <p class="feedback-author">Mark S.</p>
-            </li>
-            <li class="feedback-card">
-              <blockquote class="feedback-quote">
-                Flora helped make my friend's birthday extra special. She was
-                blown away by the flowers!
-              </blockquote>
-              <p class="feedback-author">Natalie V.</p>
-            </li>
-          </ul>
+          <div class="slider-viewport">
+            <ul class="feedback-list" data-aos="fade-up">
+              <li class="feedback-card">
+                <blockquote class="feedback-quote">
+                  "Flora made my anniversary unforgettable with their beautiful
+                  arrangement!"
+                </blockquote>
+                <p class="feedback-author">Emma T.</p>
+              </li>
+              <li class="feedback-card">
+                <blockquote class="feedback-quote">
+                  Absolutely stunning bouquet! It looked even better than the
+                  photo and arrived right on time.
+                </blockquote>
+                <p class="feedback-author">Daniel R.</p>
+              </li>
+              <li class="feedback-card">
+                <blockquote class="feedback-quote">
+                  The service was exceptional, and the flowers were fresh!
+                </blockquote>
+                <p class="feedback-author">Olivia M.</p>
+              </li>
+              <li class="feedback-card">
+                <blockquote class="feedback-quote">
+                  Ordered a last-minute gift and was amazed by how fast and
+                  professional the delivery was. Highly recommend!
+                </blockquote>
+                <p class="feedback-author">Julia K.</p>
+              </li>
+              <li class="feedback-card">
+                <blockquote class="feedback-quote">
+                  Every flower was perfect. You can feel the care and love in
+                  every bouquet.
+                </blockquote>
+                <p class="feedback-author">Mark S.</p>
+              </li>
+              <li class="feedback-card">
+                <blockquote class="feedback-quote">
+                  Flora helped make my friend's birthday extra special. She was
+                  blown away by the flowers!
+                </blockquote>
+                <p class="feedback-author">Natalie V.</p>
+              </li>
+            </ul>
+          </div>
           <div class="slider-buttons feedback-buttons">
             <button
               class="slider-btn"
@@ -584,6 +396,24 @@
             </li>
           </ul>
         </div>
+        <form class="footer-subscribe" name="subscribe-form">
+          <label class="footer-subscribe-label" for="subscribe-email">
+            Subscribe to our newsletter
+          </label>
+          <div class="footer-subscribe-row">
+            <input
+              class="form-input footer-subscribe-input"
+              type="email"
+              id="subscribe-email"
+              name="user-email"
+              placeholder="Enter your email"
+              required
+            />
+            <button class="btn footer-subscribe-btn" type="submit">
+              Subscribe
+            </button>
+          </div>
+        </form>
         <div class="footer-credits">
           <p class="footer-copyright">
             &copy; 2025 Flora. All rights reserved.
@@ -591,6 +421,117 @@
         </div>
       </div>
     </footer>
+    <div class="backdrop" data-modal="product">
+      <div class="modal product-modal">
+        <button class="modal-close-btn" type="button" aria-label="Close modal">
+          <svg class="modal-close-icon" width="24" height="24">
+            <use href="images/icons.svg#icon-close"></use>
+          </svg>
+        </button>
+        <img
+          class="product-modal-image"
+          src="images/bouquet-spring-elegance.jpg"
+          width="536"
+          height="572"
+          alt="Selected bouquet"
+        />
+        <div class="product-modal-info">
+          <h2 class="product-modal-title">Bouquet</h2>
+          <p class="product-modal-price"></p>
+          <p class="product-modal-text"></p>
+          <form class="product-modal-form" name="buy-form">
+            <label class="visually-hidden" for="product-quantity">
+              Quantity
+            </label>
+            <input
+              class="form-input product-modal-quantity"
+              type="number"
+              id="product-quantity"
+              name="quantity"
+              value="1"
+              min="1"
+              max="99"
+            />
+            <button class="btn product-modal-btn" type="submit">Buy now</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="backdrop" data-modal="order">
+      <div class="modal order-modal">
+        <button class="modal-close-btn" type="button" aria-label="Close modal">
+          <svg class="modal-close-icon" width="24" height="24">
+            <use href="images/icons.svg#icon-close"></use>
+          </svg>
+        </button>
+        <h2 class="order-modal-title">Order</h2>
+        <form class="order-form" name="order-form">
+          <div class="form-field">
+            <label class="form-label" for="order-name">Name*</label>
+            <input
+              class="form-input"
+              type="text"
+              id="order-name"
+              name="user-name"
+              placeholder="Ann"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="order-phone">Phone*</label>
+            <input
+              class="form-input"
+              type="tel"
+              id="order-phone"
+              name="user-phone"
+              placeholder="+1 (555) 123-4567"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="order-address">Adress*</label>
+            <input
+              class="form-input"
+              type="text"
+              id="order-address"
+              name="user-address"
+              placeholder="456 Floral Ave, Sydney NSW 2000 AU"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="order-message">Message</label>
+            <textarea
+              class="form-input form-textarea"
+              id="order-message"
+              name="user-message"
+              placeholder="Type your message..."
+            ></textarea>
+          </div>
+          <label class="form-agreement">
+            <input
+              class="form-checkbox visually-hidden"
+              type="checkbox"
+              name="license-agreement"
+              required
+            />
+            <span class="form-checkbox-box">
+              <svg class="form-checkbox-icon" width="12" height="12">
+                <use href="images/icons.svg#icon-check"></use>
+              </svg>
+            </span>
+            I accept the license agreement
+          </label>
+          <button class="btn order-form-btn" type="submit">
+            Go to Checkout
+          </button>
+        </form>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"
+      defer
+    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
       defer
