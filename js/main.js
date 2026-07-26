@@ -81,6 +81,8 @@ const state = {
   page: 1,
   limit: 8,
   total: null,
+  category: null,
+  isLoading: false,
   items: new Map(),
 };
 
@@ -163,6 +165,10 @@ const renderList = (list, items, markupFn) => {
   };
 
   async function loadPage(page) {
+    if (state.isLoading) {
+      return;
+    }
+    state.isLoading = true;
     loader.classList.add("is-visible");
     loadMoreBtn.classList.add("is-hidden");
     errorMessage.classList.add("is-hidden");
@@ -187,6 +193,7 @@ const renderList = (list, items, markupFn) => {
         loadMoreBtn.classList.remove("is-hidden");
       }
     } finally {
+      state.isLoading = false;
       loader.classList.remove("is-visible");
     }
   }
