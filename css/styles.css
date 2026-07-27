@@ -1008,6 +1008,13 @@ address {
   border-color: #af0000;
 }
 
+.api-offline {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(3, 12, 1, 0.6);
+}
+
 .api-error {
   margin-top: 24px;
   text-align: center;
@@ -1123,6 +1130,7 @@ address {
 
 .modal {
   position: relative;
+  outline: none;
   width: calc(100% - 40px);
   max-width: 335px;
   margin: auto;

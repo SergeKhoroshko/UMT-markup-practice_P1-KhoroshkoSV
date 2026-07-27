@@ -37,20 +37,57 @@
 
 const modals = (() => {
   const backdrops = document.querySelectorAll(".backdrop");
+  let lastFocused = null;
 
   const open = (name) => {
     const backdrop = document.querySelector(`.backdrop[data-modal="${name}"]`);
+    if (!document.querySelector(".backdrop.is-open")) {
+      lastFocused = document.activeElement;
+    }
     backdrop.classList.add("is-open");
     document.body.classList.add("no-scroll");
+    // Focus lands after the 250ms visibility transition completes
+    setTimeout(() => {
+      if (backdrop.classList.contains("is-open")) {
+        backdrop.querySelector(".modal").focus();
+      }
+    }, 300);
   };
 
   const close = (backdrop) => {
     backdrop.classList.remove("is-open");
     if (!document.querySelector(".backdrop.is-open")) {
       document.body.classList.remove("no-scroll");
+      if (lastFocused) {
+        lastFocused.focus();
+        lastFocused = null;
+      }
     }
     backdrop.dispatchEvent(new CustomEvent("modal:closed"));
   };
+
+  // Keep Tab focus inside the open modal
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab") return;
+    const openBackdrop = document.querySelector(".backdrop.is-open");
+    if (!openBackdrop) return;
+    const focusables = openBackdrop.querySelectorAll(
+      "button, input, textarea, [tabindex]",
+    );
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    } else if (!openBackdrop.contains(document.activeElement)) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
 
   backdrops.forEach((backdrop) => {
     backdrop.addEventListener("click", (event) => {
@@ -111,6 +148,9 @@ async function fetchBouquets(params) {
     }
     if (!staticBouquets) {
       const { data } = await axios.get("db.json");
+      document.querySelectorAll(".api-offline").forEach((note) => {
+        note.classList.remove("is-hidden");
+      });
       staticBouquets = data.bouquets.map((item) => ({
         id: item.id,
         photoURL: item.img,
@@ -138,30 +178,40 @@ async function fetchBouquets(params) {
 
 // ===== Rendering =====
 
+// API data is user-editable on the backend, so every interpolated value
+// is escaped before it reaches insertAdjacentHTML (stored XSS protection).
+const escapeHtml = (value) =>
+  String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+
 const bouquetCardMarkup = (item) => `
-  <li class="bouquets-card" data-id="${item.id}">
+  <li class="bouquets-card" data-id="${Number(item.id)}">
     <img
       class="bouquets-card-image"
-      src="${resolvePhoto(item.photoURL)}"
+      src="${escapeHtml(resolvePhoto(item.photoURL))}"
       width="296"
       height="296"
-      alt="${item.title} bouquet"
+      alt="${escapeHtml(item.title)} bouquet"
     />
-    <h3 class="bouquets-card-name">${item.title}</h3>
-    <p class="bouquets-card-price">$${item.price}</p>
+    <h3 class="bouquets-card-name">${escapeHtml(item.title)}</h3>
+    <p class="bouquets-card-price">$${Number(item.price)}</p>
   </li>`;
 
 const bestsellerCardMarkup = (item) => `
-  <li class="bestsellers-card" data-id="${item.id}">
+  <li class="bestsellers-card" data-id="${Number(item.id)}">
     <img
       class="bestsellers-card-image"
-      src="${resolvePhoto(item.photoURL)}"
+      src="${escapeHtml(resolvePhoto(item.photoURL))}"
       width="405"
       height="320"
-      alt="${item.title} bouquet"
+      alt="${escapeHtml(item.title)} bouquet"
     />
-    <h3 class="bestsellers-card-name">${item.title}</h3>
-    <p class="bestsellers-card-price">$${item.price}</p>
+    <h3 class="bestsellers-card-name">${escapeHtml(item.title)}</h3>
+    <p class="bestsellers-card-price">$${Number(item.price)}</p>
   </li>`;
 
 const renderList = (list, items, markupFn) => {
