@@ -389,7 +389,7 @@ address {
 }
 
 .bestsellers .slider-buttons {
-  display: none;
+  margin-top: 24px;
 }
 
 /* Bouquets */
@@ -860,11 +860,6 @@ address {
     gap: 32px;
   }
 
-  .bestsellers .slider-buttons {
-    display: flex;
-    margin-top: 24px;
-  }
-
   .bestsellers-card {
     width: 405px;
   }
@@ -1006,13 +1001,6 @@ address {
 
 .form-agreement.is-error .form-checkbox-box {
   border-color: #af0000;
-}
-
-.api-offline {
-  margin-top: 24px;
-  text-align: center;
-  font-size: 14px;
-  color: rgba(3, 12, 1, 0.6);
 }
 
 .api-error {

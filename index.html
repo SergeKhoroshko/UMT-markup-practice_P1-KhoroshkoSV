@@ -160,9 +160,6 @@
             Top-Selling Bouquets
           </h2>
           <div class="loader bestsellers-loader"></div>
-          <p class="api-offline is-hidden">
-            Live API is unavailable — showing offline catalog data.
-          </p>
           <p class="api-error bestsellers-error is-hidden">
             Failed to load bouquets. Please try again later.
           </p>
@@ -198,9 +195,6 @@
           </div>
           <ul class="bouquets-list"></ul>
           <div class="loader bouquets-loader"></div>
-          <p class="api-offline is-hidden">
-            Live API is unavailable — showing offline catalog data.
-          </p>
           <p class="api-error bouquets-error is-hidden">
             Failed to load bouquets. Please try again later.
           </p>
@@ -541,6 +535,9 @@
             </span>
             I accept the license agreement
           </label>
+          <p class="form-error order-submit-error is-hidden">
+            Failed to submit the order. Please try again.
+          </p>
           <button class="btn order-form-btn" type="submit">
             Go to Checkout
           </button>

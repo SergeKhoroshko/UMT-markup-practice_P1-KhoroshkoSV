@@ -132,48 +132,14 @@ const state = {
   items: new Map(),
 };
 
+// Which bouquet and quantity the order modal was opened for
+const orderContext = { bouquetId: null, quantity: 1 };
+
 const isValidBouquet = (item) => Boolean(item && item.title && item.photoURL);
 
-// Fallback for the live page: if the remote mock API is unavailable,
-// read the static db.json from the repository and paginate on the client.
-let staticBouquets = null;
-
 async function fetchBouquets(params) {
-  try {
-    const response = await axios.get(`${BASE_URL}/bouquets`, { params });
-    return response.data;
-  } catch (error) {
-    if (IS_LOCAL) {
-      throw error;
-    }
-    if (!staticBouquets) {
-      const { data } = await axios.get("db.json");
-      document.querySelectorAll(".api-offline").forEach((note) => {
-        note.classList.remove("is-hidden");
-      });
-      staticBouquets = data.bouquets.map((item) => ({
-        id: item.id,
-        photoURL: item.img,
-        title: item.title,
-        description: item.desc,
-        price: Number(item.price),
-        category: item.category,
-        favorite: false,
-      }));
-    }
-    let items = staticBouquets;
-    if (params.category) {
-      items = items.filter((item) => item.category === params.category);
-    }
-    const limit = params.limit || items.length;
-    const page = params.page || 1;
-    return {
-      data: items.slice((page - 1) * limit, page * limit),
-      total: items.length,
-      page,
-      limit,
-    };
-  }
+  const response = await axios.get(`${BASE_URL}/bouquets`, { params });
+  return response.data;
 }
 
 // ===== Rendering =====
@@ -437,6 +403,8 @@ const renderList = (list, items, markupFn) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     returnId = currentId;
+    orderContext.bouquetId = currentId;
+    orderContext.quantity = Number(form.elements.quantity.value) || 1;
     modals.close(document.querySelector('.backdrop[data-modal="product"]'));
     modals.open("order");
   });
@@ -525,12 +493,36 @@ const renderList = (list, items, markupFn) => {
     }
   });
 
-  orderForm.addEventListener("submit", (event) => {
+  const submitError = document.querySelector(".order-submit-error");
+  const submitBtn = orderForm.querySelector('button[type="submit"]');
+
+  orderForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const firstInvalid = validateOrderForm();
     if (firstInvalid) {
       firstInvalid.focus();
       return;
+    }
+    submitError.classList.add("is-hidden");
+    submitBtn.disabled = true;
+    try {
+      await axios.post(`${BASE_URL}/orders`, {
+        name: orderForm.elements["user-name"].value.trim(),
+        phone: orderForm.elements["user-phone"].value.trim(),
+        address: orderForm.elements["user-address"].value.trim(),
+        message: orderForm.elements["user-message"].value.trim(),
+        ...(orderContext.bouquetId
+          ? {
+              bouquetId: orderContext.bouquetId,
+              quantity: orderContext.quantity,
+            }
+          : {}),
+      });
+    } catch (error) {
+      submitError.classList.remove("is-hidden");
+      return;
+    } finally {
+      submitBtn.disabled = false;
     }
     orderForm.reset();
     const backdrop = document.querySelector('.backdrop[data-modal="order"]');
