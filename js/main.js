@@ -74,9 +74,17 @@ const modals = (() => {
 
 // ===== API =====
 
-const BASE_URL = ["localhost", "127.0.0.1"].includes(window.location.hostname)
+const IS_LOCAL = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+
+const BACKEND_URL = IS_LOCAL
   ? "http://localhost:3000"
-  : "https://my-json-server.typicode.com/SergeKhoroshko/UMT-markup-practice_P1-KhoroshkoSV";
+  : "https://flora-backend-hutt.onrender.com";
+
+const BASE_URL = `${BACKEND_URL}/api`;
+
+// Uploaded photos are stored on the backend and served as relative paths
+const resolvePhoto = (photoURL) =>
+  photoURL.startsWith("/") ? `${BACKEND_URL}${photoURL}` : photoURL;
 
 const state = {
   page: 1,
@@ -87,7 +95,7 @@ const state = {
   items: new Map(),
 };
 
-const isValidBouquet = (item) => Boolean(item && item.title && item.img);
+const isValidBouquet = (item) => Boolean(item && item.title && item.photoURL);
 
 // Fallback for the live page: if the remote mock API is unavailable,
 // read the static db.json from the repository and paginate on the client.
@@ -95,24 +103,35 @@ let staticBouquets = null;
 
 async function fetchBouquets(params) {
   try {
-    return await axios.get(`${BASE_URL}/bouquets`, { params });
+    const response = await axios.get(`${BASE_URL}/bouquets`, { params });
+    return response.data;
   } catch (error) {
-    if (BASE_URL.includes("localhost")) {
+    if (IS_LOCAL) {
       throw error;
     }
     if (!staticBouquets) {
       const { data } = await axios.get("db.json");
-      staticBouquets = data.bouquets;
+      staticBouquets = data.bouquets.map((item) => ({
+        id: item.id,
+        photoURL: item.img,
+        title: item.title,
+        description: item.desc,
+        price: Number(item.price),
+        category: item.category,
+        favorite: false,
+      }));
     }
     let items = staticBouquets;
     if (params.category) {
       items = items.filter((item) => item.category === params.category);
     }
-    const limit = params._limit || items.length;
-    const start = ((params._page || 1) - 1) * limit;
+    const limit = params.limit || items.length;
+    const page = params.page || 1;
     return {
-      data: items.slice(start, start + limit),
-      headers: { "x-total-count": String(items.length) },
+      data: items.slice((page - 1) * limit, page * limit),
+      total: items.length,
+      page,
+      limit,
     };
   }
 }
@@ -123,7 +142,7 @@ const bouquetCardMarkup = (item) => `
   <li class="bouquets-card" data-id="${item.id}">
     <img
       class="bouquets-card-image"
-      src="${item.img}"
+      src="${resolvePhoto(item.photoURL)}"
       width="296"
       height="296"
       alt="${item.title} bouquet"
@@ -136,7 +155,7 @@ const bestsellerCardMarkup = (item) => `
   <li class="bestsellers-card" data-id="${item.id}">
     <img
       class="bestsellers-card-image"
-      src="${item.img}"
+      src="${resolvePhoto(item.photoURL)}"
       width="405"
       height="320"
       alt="${item.title} bouquet"
@@ -175,12 +194,12 @@ const renderList = (list, items, markupFn) => {
     errorMessage.classList.add("is-hidden");
     try {
       const response = await fetchBouquets({
-        _page: page,
-        _limit: state.limit,
+        page,
+        limit: state.limit,
       });
       const items = response.data.filter(isValidBouquet);
       items.forEach((item) => state.items.set(item.id, item));
-      const totalCount = Number(response.headers["x-total-count"]);
+      const totalCount = Number(response.total);
       state.total = Number.isNaN(totalCount) ? null : totalCount;
       state.page = page;
       renderList(list, items, bouquetCardMarkup);
@@ -273,8 +292,8 @@ const renderList = (list, items, markupFn) => {
     try {
       const response = await fetchBouquets({
         category: "top",
-        _page: 1,
-        _limit: SLIDES_TO_SHOW,
+        page: 1,
+        limit: SLIDES_TO_SHOW,
       });
       const items = response.data.filter(isValidBouquet);
       items.forEach((item) => state.items.set(item.id, item));
@@ -347,11 +366,11 @@ const renderList = (list, items, markupFn) => {
     const item = state.items.get(id);
     if (!item) return;
     currentId = id;
-    image.src = item.img;
+    image.src = resolvePhoto(item.photoURL);
     image.alt = `${item.title} bouquet`;
     title.textContent = item.title;
     price.textContent = `$${item.price}`;
-    text.textContent = item.desc || "";
+    text.textContent = item.description || "";
     if (!preserveQty) {
       form.reset();
     }
